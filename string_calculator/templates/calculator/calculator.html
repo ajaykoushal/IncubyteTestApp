@@ -6,6 +6,26 @@
     <title>String Calculator</title>
 </head>
 <body>
-    <!-- Calculator body -->
+    <div>
+        <h1>String Calculator App</h1>
+        <hr></hr>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" class="input-string" name="string_numbers" placeholder="Enter numbers separated by commas or new lines" value="{{ string_numbers }}">
+            <button type="submit" class="submit-btn">Calculate</button>
+        </form>
+        
+        {% if result is not None %}
+            <div>
+                <h2>Result: {{ result }}</h2>
+            </div>
+        {% endif %}
+
+        {% if error_message %}
+        <div>
+            <h2 style="color: red;">Error: {{ error_message }}</h2>
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
