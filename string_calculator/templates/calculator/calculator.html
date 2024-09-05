@@ -4,9 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>String Calculator</title>
+    <style>
+        body {
+            text-align: -webkit-center;
+            font-family: monospace;
+        }
+
+        .container {
+            margin-top: 5%;
+            width: 50%;
+            border: 1px solid;
+            border-radius: 10px;
+        }
+
+        form {
+            text-align: justify;
+            margin-left: 35px;
+            margin-bottom: 20px;
+        }
+
+        .input-string {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid;
+            width: 400px;
+        }
+
+        .submit-btn {
+            border: 1px solid;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f16a0a;
+            color: #ffffff;
+            margin-top: 20px;
+            width: 200px;
+        }
+
+        .result-area, .error-message {
+            border: 1px solid;
+            border-radius: 5px;
+            width: 92%;
+            background-color: aquamarine;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            background-color: antiquewhite;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <div class="container">
         <h1>String Calculator App</h1>
         <hr></hr>
         <form method="post">
@@ -16,13 +65,13 @@
         </form>
         
         {% if result is not None %}
-            <div>
+            <div class="result-area">
                 <h2>Result: {{ result }}</h2>
             </div>
         {% endif %}
 
         {% if error_message %}
-        <div>
+        <div class="error-message">
             <h2 style="color: red;">Error: {{ error_message }}</h2>
         </div>
         {% endif %}
