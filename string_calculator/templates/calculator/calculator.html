@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>String Calculator</title>
     <style>
+        /* Basic styling for the body */
         body {
             text-align: -webkit-center;
             font-family: monospace;
         }
 
+        /* Container styling */
         .container {
             margin-top: 5%;
             width: 50%;
@@ -17,12 +19,14 @@
             border-radius: 10px;
         }
 
+        /* Form styling */
         form {
             text-align: justify;
             margin-left: 35px;
             margin-bottom: 20px;
         }
 
+        /* Input field styling */
         .input-string {
             padding: 10px;
             border-radius: 5px;
@@ -30,6 +34,7 @@
             width: 400px;
         }
 
+        /* Submit button styling */
         .submit-btn {
             border: 1px solid;
             border-radius: 5px;
@@ -40,6 +45,7 @@
             width: 200px;
         }
 
+        /* Result and error message area styling */
         .result-area, .error-message {
             border: 1px solid;
             border-radius: 5px;
@@ -49,10 +55,12 @@
             margin-bottom: 20px;
         }
 
+        /* Specific styling for error messages */
         .error-message {
             background-color: antiquewhite;
         }
 
+        /* Styling for input options (radio buttons) */
         .input-options {
             margin-top: 20px;
             font-size: 14px;
@@ -67,6 +75,7 @@
         <hr>
         <form method="post">
             {% csrf_token %}
+            <!-- Input field for numbers -->
             <input type="text" class="input-string" name="string_numbers" placeholder="Enter numbers separated by commas or new lines" value="{{ string_numbers }}">
             
             <!-- Radio buttons for selecting arithmetic operation -->
@@ -77,15 +86,18 @@
                 <label><input type="radio" name="action_input" value="mul" {% if action_input is not None and action_input == 'mul' %} checked {% endif %}> Mul</label>
             </div>
             
+            <!-- Submit button -->
             <button type="submit" class="submit-btn">Calculate</button>
         </form>
         
+        <!-- Display result if available -->
         {% if result is not None %}
             <div class="result-area">
                 <h2>Result: {{ result }}</h2>
             </div>
         {% endif %}
 
+        <!-- Display error message if available -->
         {% if error_message %}
         <div class="error-message">
             <h2 style="color: red;">Error: {{ error_message }}</h2>
