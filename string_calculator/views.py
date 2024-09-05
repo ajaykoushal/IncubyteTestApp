@@ -10,7 +10,7 @@ class StringCalculator:
 
         # Handle custom delimiters
         if numbers.startswith('//'):
-            delimiter_end = numbers.find('\n')
+            delimiter_end = numbers.find('\n')  
             if delimiter_end != -1:
                 custom_delimiter = numbers[2:delimiter_end].strip()
                 numbers = numbers[delimiter_end+1:].replace(custom_delimiter, ',')
@@ -32,3 +32,23 @@ class StringCalculator:
 
     def add(self, numbers: str) -> int:
         return self._calculate(numbers)
+
+
+def calculator_view(request):
+    result = None
+    string_numbers = ""
+    error_message = ""
+
+    if request.method == 'POST':
+        string_numbers = request.POST.get('string_numbers')
+        calculator = StringCalculator()
+        try:
+            result = calculator.add(string_numbers)
+        except Exception as e:
+            error_message = str(e)
+    
+    return render(request, 'calculator/calculator.html', {
+        'string_numbers': string_numbers,
+        'result': result,
+        'error_message': error_message}
+    )
